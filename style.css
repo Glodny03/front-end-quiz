@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --primary-color: rgb(0, 130, 31);
+    --secondary-color: rgb(222, 247, 229);
+    --text-color: rgb(0, 0, 0);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary-color) url(./assets/quizBg.png) center;
+    flex-direction: column;
+}
