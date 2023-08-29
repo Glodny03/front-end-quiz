@@ -142,3 +142,53 @@ body {
     background-color: #D8FAE4;
     color: black;
 }
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    font-size: 14px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.btn-primary {
+    background-color: #00890A;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #006207;
+}
+
+.btn-secondary {
+    background-color: white;
+    border: 2px solid #00890A;
+    color: #00890A;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+}
+
+.btn-wrapper {
+    display: flex;
+}
+
+.btn-with-margin {
+    margin-right: 10px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.result-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
