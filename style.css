@@ -85,3 +85,60 @@ body {
     color: #F80000;
     top: 7rem;
 }
+
+.quiz {
+    width: 60%;
+    height: 100%;
+}
+
+.quiz-question {
+    font-size: 30px;
+}
+
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0;
+}
+
+.answer-option {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.answer-option input[type="radio"] {
+    display: none;
+}
+
+.answer-option label,
+.answer-option .answer-text {
+    background-color: #CCCCCC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 18px;
+    height: 60px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.answer-option label {
+    margin-right: 10px;
+    font-weight: bold;
+    width: 50px;
+}
+
+.answer-option .answer-text {
+    padding: 0 20px;
+    width: 350px;
+    justify-content: flex-start;
+}
+
+.selected label,
+.selected .answer-text {
+    background-color: #D8FAE4;
+    color: black;
+}
