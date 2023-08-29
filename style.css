@@ -192,3 +192,10 @@ body {
     bottom: 0;
     right: 0;
 }
+
+.person-image {
+    position: absolute;
+    width: 40%;
+    bottom: 0;
+    right: 40px;
+}
