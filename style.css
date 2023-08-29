@@ -199,3 +199,89 @@ body {
     bottom: 0;
     right: 40px;
 }
+
+.result-popup {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./assets/resultBg.jpg');
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: none !important;
+}
+
+.result-popup-active {
+    display: flex !important;
+}
+
+.result-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: clamp(296px, 65%, 1300px);
+    height: clamp(430px, 82.5vh, 830px);
+    background-color: transparent;
+    padding: 3.5rem;
+    border: 2px solid #006207;
+    border-radius: 8px;
+}
+
+.result-info h2 {
+    font-size: 34px;
+}
+
+.result-info p {
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.result-info h1 {
+    font-size: 120px;
+    margin-top: -10px;
+}
+
+.result-info h3 {
+    margin-bottom: 20px;
+}
+
+
+.low h1,
+.low h2 {
+    color: #F80000;
+}
+
+.medium h1,
+.medium h2 {
+    color: #FF713A;
+}
+
+.high h1,
+.high h2 {
+    color: #00CE12;
+}
+
+.result-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.result-image img {
+    width: 38px;
+    margin-right: 14px;
+    display: none;
+}
+
+.high .result-icon-high,
+.medium .result-icon-medium,
+.low .result-icon-low {
+    display: block !important;
+}
