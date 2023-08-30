@@ -88,7 +88,7 @@ class Quiz {
 
         this.saveAnswerBtn.addEventListener('click', this.saveAnswer);
         this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
-        this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
+
         this.answerOptions.forEach(option => option.addEventListener('click', () => this.selectAnswer(option)));
     };
 
@@ -110,6 +110,13 @@ class Quiz {
             this.answerOptions[this.userSelectedAnswer].classList.add("wrong");
             this.userWrongAnswersNum++;
         }
+
+        this.saveUserStats();
+    };
+
+    saveUserStats = () => {
+        document.querySelector(".correct-answers-num").innerHTML = this.userCorrectAnswersNum;
+        document.querySelector(".wrong-answers-num").innerHTML = this.userWrongAnswersNum;
     };
 
     setNextQuestionData = () => {
@@ -128,6 +135,7 @@ class Quiz {
         this.answer3.innerHTML = question.answers[3];
 
         this.correctAnswerNum = question.correctAnswerNum;
+
     };
 };
 
