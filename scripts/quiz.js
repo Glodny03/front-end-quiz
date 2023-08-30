@@ -57,6 +57,7 @@ class Quiz {
 
     currentQuestionIndex = -1;
 
+    quizProgress = null;
     quizQuestionText = null;
     answer0 = null;
     answer1 = null;
@@ -71,13 +72,35 @@ class Quiz {
     nextQuestionBtn = null;
 
     init() {
+        this.quizProgress = document.querySelector(".quiz-progress");
         this.quizQuestionText = document.querySelector(".quiz-question");
         this.answer0 = document.querySelector(".answer-text-0");
         this.answer1 = document.querySelector(".answer-text-1");
         this.answer2 = document.querySelector(".answer-text-2");
         this.answer3 = document.querySelector(".answer-text-3");
+
         this.saveAnswerBtn = document.querySelector(".btn-save-answer");
         this.nextQuestionBtn = document.querySelector(".btn-next-question");
+
+        this.setNextQuestionData();
+    };
+
+    setNextQuestionData = () => {
+        this.currentQuestionIndex++;
+        if (this.currentQuestionIndex >= this.questions.length) {
+            console.log("The end of the quiz!")
+            return;
+        }
+
+        const question = this.questions[this.currentQuestionIndex];
+        this.quizProgress.innerHTML = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
+        this.quizQuestionText.innerHTML = question.q;
+        this.answer0.innerHTML = question.answers[0];
+        this.answer1.innerHTML = question.answers[1];
+        this.answer2.innerHTML = question.answers[2];
+        this.answer3.innerHTML = question.answers[3];
+
+        this.correctAnswerNum = question.correctAnswerNum;
     };
 };
 
