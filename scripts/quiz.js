@@ -59,13 +59,14 @@ class Quiz {
 
     quizProgress = null;
     quizQuestionText = null;
+    answerOptions = null;
     answer0 = null;
     answer1 = null;
     answer2 = null;
     answer3 = null;
     correctAnswerNum = null;
 
-    userSelectedInput = null;
+    userSelectedAnswer = null;
     userCorrectAnswersNum = 0;
     userWrongAnswersNum = 0;
     saveAnswerBtn = null;
@@ -74,6 +75,7 @@ class Quiz {
     init() {
         this.quizProgress = document.querySelector(".quiz-progress");
         this.quizQuestionText = document.querySelector(".quiz-question");
+        this.answerOptions = document.querySelectorAll(".answer-option");
         this.answer0 = document.querySelector(".answer-text-0");
         this.answer1 = document.querySelector(".answer-text-1");
         this.answer2 = document.querySelector(".answer-text-2");
@@ -83,7 +85,16 @@ class Quiz {
         this.nextQuestionBtn = document.querySelector(".btn-next-question");
 
         this.setNextQuestionData();
+
+        this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
+        this.answerOptions.forEach(option => option.addEventListener('click', () => this.selectAnswer(option)));
     };
+
+    selectAnswer = (option) => {
+        this.answerOptions.forEach(option => option.classList.remove('selected'));
+        option.classList.add('selected');
+        this.userSelectedAnswer = option.getAttribute('data-option');
+    }
 
     setNextQuestionData = () => {
         this.currentQuestionIndex++;
