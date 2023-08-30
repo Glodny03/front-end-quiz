@@ -86,6 +86,8 @@ class Quiz {
 
         this.setNextQuestionData();
 
+        this.saveAnswerBtn.addEventListener('click', this.saveAnswer);
+        this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
         this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
         this.answerOptions.forEach(option => option.addEventListener('click', () => this.selectAnswer(option)));
     };
@@ -95,6 +97,20 @@ class Quiz {
         option.classList.add('selected');
         this.userSelectedAnswer = option.getAttribute('data-option');
     }
+
+    saveAnswer = () => {
+        if (!this.userSelectedAnswer) return console.log('You need to choose one of the options.');
+
+        this.answerOptions[this.correctAnswerNum].classList.add("correct");
+
+        if (this.userSelectedAnswer == this.correctAnswerNum) {
+            this.userCorrectAnswersNum++;
+
+        } else {
+            this.answerOptions[this.userSelectedAnswer].classList.add("wrong");
+            this.userWrongAnswersNum++;
+        }
+    };
 
     setNextQuestionData = () => {
         this.currentQuestionIndex++;

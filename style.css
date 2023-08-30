@@ -143,6 +143,18 @@ body {
     color: black;
 }
 
+.correct label,
+.correct .answer-text {
+    background-color: #00890A;
+    color: rgb(255, 255, 255);
+}
+
+.wrong label,
+.wrong .answer-text {
+    background-color: #d90000;
+    color: rgb(255, 255, 255);
+}
+
 .btn {
     display: flex;
     justify-content: center;
