@@ -33,26 +33,26 @@ class Quiz {
             answers: ['It is used for making API calls', 'It provides access to browser cookies', 'It allows functional components to manage state', 'It connects React components to a Redux store'],
             correctAnswerNum: 2
         },
-        {
-            q: 'What is the purpose of the setTimeout function in JavaScript?',
-            answers: ['It creates a new thread for executing code', 'It delays the execution of a function by a specified time', 'It defines a CSS style timeout for animations', 'It sets a timeout for AJAX requests'],
-            correctAnswerNum: 1,
-        },
-        {
-            q: "Which keyword creates a constant in JavaScript?",
-            answers: ["const", "let", "var", "constant"],
-            correctAnswerNum: 0,
-        },
-        {
-            q: "What tool does React use to compile JSX?",
-            answers: ['JSX Compiler', 'ReactDOM', 'React Router', 'Babel'],
-            correctAnswerNum: 3
-        },
-        {
-            q: " Choose the correct HTML element to define important text.",
-            answers: [`<strong>`, `<bold>`, `<em>`, `<important>`],
-            correctAnswerNum: 0,
-        },
+        // {
+        //     q: 'What is the purpose of the setTimeout function in JavaScript?',
+        //     answers: ['It creates a new thread for executing code', 'It delays the execution of a function by a specified time', 'It defines a CSS style timeout for animations', 'It sets a timeout for AJAX requests'],
+        //     correctAnswerNum: 1,
+        // },
+        // {
+        //     q: "Which keyword creates a constant in JavaScript?",
+        //     answers: ["const", "let", "var", "constant"],
+        //     correctAnswerNum: 0,
+        // },
+        // {
+        //     q: "What tool does React use to compile JSX?",
+        //     answers: ['JSX Compiler', 'ReactDOM', 'React Router', 'Babel'],
+        //     correctAnswerNum: 3
+        // },
+        // {
+        //     q: " Choose the correct HTML element to define important text.",
+        //     answers: [`<strong>`, `<bold>`, `<em>`, `<important>`],
+        //     correctAnswerNum: 0,
+        // },
     ];
 
     currentQuestionIndex = -1;
@@ -72,6 +72,15 @@ class Quiz {
     saveAnswerBtn = null;
     nextQuestionBtn = null;
 
+    userPercentage = 0
+    resultPopup = null;
+    resultImage = null;
+    resultMainText = null;
+    resultPercentage = null;
+    resultLevel = null;
+    resultBtn = null;
+    gameMode = true;
+
     init() {
         this.quizProgress = document.querySelector(".quiz-progress");
         this.quizQuestionText = document.querySelector(".quiz-question");
@@ -80,9 +89,14 @@ class Quiz {
         this.answer1 = document.querySelector(".answer-text-1");
         this.answer2 = document.querySelector(".answer-text-2");
         this.answer3 = document.querySelector(".answer-text-3");
-
         this.saveAnswerBtn = document.querySelector(".btn-save-answer");
         this.nextQuestionBtn = document.querySelector(".btn-next-question");
+        this.resultPopup = document.querySelector(".result-popup");
+        this.resultImage = document.querySelector(".result-info");
+        this.resultMainText = document.querySelector(".result-main-text");
+        this.resultPercentage = document.querySelector(".result-percentage");
+        this.resultLevel = document.querySelector(".result-level");
+        this.resultBtn = document.querySelector(".result-btn");
 
         this.setNextQuestionData();
 
@@ -93,6 +107,7 @@ class Quiz {
     };
 
     selectAnswer = (option) => {
+        if (!this.gameMode) return;
         this.saveAnswerBtn.disabled = false;
         this.answerOptions.forEach(option => option.classList.remove('selected'));
         option.classList.add('selected');
@@ -115,6 +130,8 @@ class Quiz {
         this.saveUserStats();
         this.saveAnswerBtn.disabled = true;
         this.nextQuestionBtn.disabled = false;
+        this.gameMode = false;
+
     };
 
     saveUserStats = () => {
@@ -125,7 +142,7 @@ class Quiz {
     setNextQuestionData = () => {
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex >= this.questions.length) {
-            console.log("The end of the quiz!")
+            this.showQuizResults();
             return;
         }
 
@@ -142,6 +159,34 @@ class Quiz {
         this.userSelectedAnswer = null;
         this.saveAnswerBtn.disabled = true;
         this.nextQuestionBtn.disabled = true;
+        this.gameMode = true;
+    };
+
+    showQuizResults = () => {
+        this.resultPopup.classList.add("result-popup-active");
+        this.userPercentage = Math.round((this.userCorrectAnswersNum / this.questions.length) * 100);
+
+        let resultText = ''
+        let resultType = '';
+
+        if (this.userPercentage >= 71) {
+            resultText = "Excellent!"
+            resultType = "high";
+            this.resultImage.classList.add("high");
+
+        } else if (this.userPercentage >= 41) {
+            resultText = "Not Bad!"
+            resultType = "medium";
+            this.resultImage.classList.add("medium");
+        } else {
+            resultText = "You Failed!"
+            resultType = "low";
+            this.resultImage.classList.add("low");
+        }
+
+        this.resultMainText.innerHTML = resultText;
+        this.resultLevel.innerHTML = resultType;
+        this.resultPercentage.innerHTML = this.userPercentage + "%";
     };
 };
 
