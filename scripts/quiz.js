@@ -33,31 +33,32 @@ class Quiz {
             answers: ['It is used for making API calls', 'It provides access to browser cookies', 'It allows functional components to manage state', 'It connects React components to a Redux store'],
             correctAnswerNum: 2
         },
-        // {
-        //     q: 'What is the purpose of the setTimeout function in JavaScript?',
-        //     answers: ['It creates a new thread for executing code', 'It delays the execution of a function by a specified time', 'It defines a CSS style timeout for animations', 'It sets a timeout for AJAX requests'],
-        //     correctAnswerNum: 1,
-        // },
-        // {
-        //     q: "Which keyword creates a constant in JavaScript?",
-        //     answers: ["const", "let", "var", "constant"],
-        //     correctAnswerNum: 0,
-        // },
-        // {
-        //     q: "What tool does React use to compile JSX?",
-        //     answers: ['JSX Compiler', 'ReactDOM', 'React Router', 'Babel'],
-        //     correctAnswerNum: 3
-        // },
-        // {
-        //     q: " Choose the correct HTML element to define important text.",
-        //     answers: [`<strong>`, `<bold>`, `<em>`, `<important>`],
-        //     correctAnswerNum: 0,
-        // },
+        {
+            q: 'What is the purpose of the setTimeout function in JavaScript?',
+            answers: ['It creates a new thread for executing code', 'It delays the execution of a function by a specified time', 'It defines a CSS style timeout for animations', 'It sets a timeout for AJAX requests'],
+            correctAnswerNum: 1,
+        },
+        {
+            q: "Which keyword creates a constant in JavaScript?",
+            answers: ["const", "let", "var", "constant"],
+            correctAnswerNum: 0,
+        },
+        {
+            q: "What tool does React use to compile JSX?",
+            answers: ['JSX Compiler', 'ReactDOM', 'React Router', 'Babel'],
+            correctAnswerNum: 3
+        },
+        {
+            q: " Choose the correct HTML element to define important text.",
+            answers: [`<strong>`, `<bold>`, `<em>`, `<important>`],
+            correctAnswerNum: 0,
+        },
     ];
 
     currentQuestionIndex = -1;
 
     quizProgress = null;
+    quizProgressBar = null;
     quizQuestionText = null;
     answerOptions = null;
     answer0 = null;
@@ -83,6 +84,7 @@ class Quiz {
 
     init() {
         this.quizProgress = document.querySelector(".quiz-progress");
+        this.quizProgressBar = document.querySelector(".progress-bar");
         this.quizQuestionText = document.querySelector(".quiz-question");
         this.answerOptions = document.querySelectorAll(".answer-option");
         this.answer0 = document.querySelector(".answer-text-0");
@@ -146,6 +148,8 @@ class Quiz {
 
         const question = this.questions[this.currentQuestionIndex];
         this.quizProgress.textContent = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
+        this.quizProgressBar.style.width = `${(this.currentQuestionIndex) / this.questions.length * 100}%`;
+        console.log(`${(this.currentQuestionIndex + 1) / this.questions.length * 100}%`);
         this.quizQuestionText.textContent = question.q;
         this.answer0.textContent = question.answers[0];
         this.answer1.textContent = question.answers[1];
@@ -162,13 +166,17 @@ class Quiz {
 
     restartQuiz = () => {
         this.resultPopup.classList.remove("result-popup-active");
-        this.resultImage.classList.remove("low", "medium", "high");
+
+        setTimeout(() => {
+            this.resultImage.classList.remove("low", "medium", "high");
+        }, 800);
         this.currentQuestionIndex = -1;
         this.userCorrectAnswersNum = 0;
         this.userWrongAnswersNum = 0;
         this.setUserStats();
 
         this.setNextQuestionData();
+
     };
 
     showQuizResults = () => {

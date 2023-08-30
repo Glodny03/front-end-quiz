@@ -41,6 +41,7 @@ body {
 .progress-bar {
     height: 100%;
     background: #00890A;
+    transition: .4s;
 }
 
 .quiz-progress-wrapper {
@@ -237,16 +238,16 @@ body {
     align-items: center;
     background-image: url('./assets/resultBg.jpg');
     z-index: 2;
-    top: 0;
+    top: -100%;
     left: 0;
     width: 100vw;
     height: 100vh;
-
-    display: none !important;
+    transition: 0.7s;
+    /* display: none !important; */
 }
 
 .result-popup-active {
-    display: flex !important;
+    top: 0;
 }
 
 .result-info {
