@@ -53,9 +53,24 @@ class Quiz {
             answers: ['<strong>', '<bold>', '<em>', '<important>'],
             correctAnswerNum: 0,
         },
-    ]
+    ];
 
-    init() {}
+    currentQuestionIndex = -1;
+
+    quizQuestionText = null;
+    answer0 = null;
+    answer1 = null;
+    answer2 = null;
+    answer3 = null;
+    correctAnswerNum = null;
+
+    userSelectedInput = null;
+    userCorrectAnswersNum = 0;
+    userWrongAnswersNum = 0;
+    saveAnswerBtn = null;
+    nextQuestionBtn = null;
+
+    init() {};
 };
 
 const quiz = new Quiz();
