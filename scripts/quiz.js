@@ -70,7 +70,15 @@ class Quiz {
     saveAnswerBtn = null;
     nextQuestionBtn = null;
 
-    init() {};
+    init() {
+        this.quizQuestionText = document.querySelector(".quiz-question");
+        this.answer0 = document.querySelector(".answer-text-0");
+        this.answer1 = document.querySelector(".answer-text-1");
+        this.answer2 = document.querySelector(".answer-text-2");
+        this.answer3 = document.querySelector(".answer-text-3");
+        this.saveAnswerBtn = document.querySelector(".btn-save-answer");
+        this.nextQuestionBtn = document.querySelector(".btn-next-question");
+    };
 };
 
 const quiz = new Quiz();
