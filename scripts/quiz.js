@@ -93,6 +93,7 @@ class Quiz {
     };
 
     selectAnswer = (option) => {
+        this.saveAnswerBtn.disabled = false;
         this.answerOptions.forEach(option => option.classList.remove('selected'));
         option.classList.add('selected');
         this.userSelectedAnswer = option.getAttribute('data-option');
@@ -112,6 +113,8 @@ class Quiz {
         }
 
         this.saveUserStats();
+        this.saveAnswerBtn.disabled = true;
+        this.nextQuestionBtn.disabled = false;
     };
 
     saveUserStats = () => {
@@ -135,7 +138,10 @@ class Quiz {
         this.answer3.innerHTML = question.answers[3];
 
         this.correctAnswerNum = question.correctAnswerNum;
-
+        this.answerOptions.forEach(option => option.classList.remove("correct", "wrong", "selected"));
+        this.userSelectedAnswer = null;
+        this.saveAnswerBtn.disabled = true;
+        this.nextQuestionBtn.disabled = true;
     };
 };
 

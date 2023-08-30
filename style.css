@@ -199,10 +199,28 @@ body {
     transform: scale(0.95);
 }
 
+.btn:disabled:active {
+    transform: none;
+}
+
 .result-btn {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.btn-primary:disabled {
+    background-color: #a6c2ab;
+}
+
+.btn-secondary:disabled {
+    border-color: #a6c2ab;
+    color: #a6c2ab;
 }
 
 .person-image {
