@@ -1,6 +1,6 @@
-window.onload(() => {
+window.onload = function () {
     quiz.init();
-});
+};
 
 class Quiz {
     questions = [{
