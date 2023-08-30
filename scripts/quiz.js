@@ -50,7 +50,7 @@ class Quiz {
         },
         {
             q: " Choose the correct HTML element to define important text.",
-            answers: ['<strong>', '<bold>', '<em>', '<important>'],
+            answers: [`<strong>`, `<bold>`, `<em>`, `<important>`],
             correctAnswerNum: 0,
         },
     ];
@@ -118,8 +118,8 @@ class Quiz {
     };
 
     saveUserStats = () => {
-        document.querySelector(".correct-answers-num").innerHTML = this.userCorrectAnswersNum;
-        document.querySelector(".wrong-answers-num").innerHTML = this.userWrongAnswersNum;
+        document.querySelector(".correct-answers-num").textContent = this.userCorrectAnswersNum;
+        document.querySelector(".wrong-answers-num").textContent = this.userWrongAnswersNum;
     };
 
     setNextQuestionData = () => {
@@ -130,12 +130,12 @@ class Quiz {
         }
 
         const question = this.questions[this.currentQuestionIndex];
-        this.quizProgress.innerHTML = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
-        this.quizQuestionText.innerHTML = question.q;
-        this.answer0.innerHTML = question.answers[0];
-        this.answer1.innerHTML = question.answers[1];
-        this.answer2.innerHTML = question.answers[2];
-        this.answer3.innerHTML = question.answers[3];
+        this.quizProgress.textContent = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
+        this.quizQuestionText.textContent = question.q;
+        this.answer0.textContent = question.answers[0];
+        this.answer1.textContent = question.answers[1];
+        this.answer2.textContent = question.answers[2];
+        this.answer3.textContent = question.answers[3];
 
         this.correctAnswerNum = question.correctAnswerNum;
         this.answerOptions.forEach(option => option.classList.remove("correct", "wrong", "selected"));
