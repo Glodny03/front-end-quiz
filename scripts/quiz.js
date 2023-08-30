@@ -102,6 +102,7 @@ class Quiz {
 
         this.saveAnswerBtn.addEventListener('click', this.saveAnswer);
         this.nextQuestionBtn.addEventListener('click', this.setNextQuestionData);
+        this.resultBtn.addEventListener('click', this.restartQuiz);
 
         this.answerOptions.forEach(option => option.addEventListener('click', () => this.selectAnswer(option)));
     };
@@ -127,24 +128,21 @@ class Quiz {
             this.userWrongAnswersNum++;
         }
 
-        this.saveUserStats();
+        this.setUserStats();
         this.saveAnswerBtn.disabled = true;
         this.nextQuestionBtn.disabled = false;
         this.gameMode = false;
 
     };
 
-    saveUserStats = () => {
+    setUserStats = () => {
         document.querySelector(".correct-answers-num").textContent = this.userCorrectAnswersNum;
         document.querySelector(".wrong-answers-num").textContent = this.userWrongAnswersNum;
     };
 
     setNextQuestionData = () => {
         this.currentQuestionIndex++;
-        if (this.currentQuestionIndex >= this.questions.length) {
-            this.showQuizResults();
-            return;
-        }
+        if (this.currentQuestionIndex >= this.questions.length) return this.showQuizResults();
 
         const question = this.questions[this.currentQuestionIndex];
         this.quizProgress.textContent = `${this.currentQuestionIndex + 1} / ${this.questions.length}`;
@@ -160,6 +158,17 @@ class Quiz {
         this.saveAnswerBtn.disabled = true;
         this.nextQuestionBtn.disabled = true;
         this.gameMode = true;
+    };
+
+    restartQuiz = () => {
+        this.resultPopup.classList.remove("result-popup-active");
+        this.resultImage.classList.remove("low", "medium", "high");
+        this.currentQuestionIndex = -1;
+        this.userCorrectAnswersNum = 0;
+        this.userWrongAnswersNum = 0;
+        this.setUserStats();
+
+        this.setNextQuestionData();
     };
 
     showQuizResults = () => {
