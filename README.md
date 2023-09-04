@@ -23,4 +23,8 @@ Check out the live preview of the project [here](https://jakubmrzyglod.pl/portfo
 4. At the end of the quiz, view your results and performance level.
 
 
-> Note: Designed by [Themeforest](https://themeforest.net/)
+## Credits
+
+- Game design by [Themeforest](https://themeforest.net/).
+- Icons from [Flaticon](https://www.flaticon.com/).
+
